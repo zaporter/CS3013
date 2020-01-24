@@ -10,7 +10,10 @@ https://gist.github.com/tkuchiki/4b77005cc64426b28c3d
 man /usr/bin/time
 
 https://stackoverflow.com/questions/13274786/how-to-share-memory-between-process-fork
+https://askubuntu.com/questions/385528/how-to-increment-a-variable-in-bash
+https://stackoverflow.com/questions/6958689/running-multiple-commands-with-xargs/6958957#6958957
 
+man cut
 
 For this assignment, I tried to play code golf.
 The structure is a string
