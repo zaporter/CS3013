@@ -1,3 +1,7 @@
+
+I use an integer and a 2d character array to store the background processes
+
+
 // RESOURCES CONSULTED:
 // https://ia.wpi.edu/cs3013-walls/resources.php?page=show_project&id=6
 // man system
