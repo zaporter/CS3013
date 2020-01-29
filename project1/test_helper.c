@@ -46,8 +46,8 @@ pid_t run(char* cmd, bool shouldwait){
         printf("-- Background Processes --\n");
  //       printf("COMMAND: %s\n",command);
         if ((child=fork())==0) {
-        char* command = "ps | grep -v \" sh\\| multi\\| time\\| a.out\\| ps\\| grep\\| cut\\| xargs\\| bash\" | cut -c 24- | xargs sh -c 'number=0;for arg do printf \"[$number] $arg\\n\"; number=$((number+1)); done'";
- //           printf("%s\n",command);
+        char* command = "ps  | grep -v \" sh\\| multi\\| time\\| a.out\\| ps\\| grep\\| cut\\| xargs\\| bash\" | cut -c 24- | xargs sh -c 'number=0;for arg do printf \"[$number] $arg\\n\"; number=$((number+1)); done'";
+            printf("%s\n",command);
             execl("/bin/sh","sh","-c",command, (char *) NULL);
         }else{
             while(shouldwait && waitpid(child, &statusID, 0) == -1){} // wait for completion

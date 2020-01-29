@@ -12,8 +12,9 @@ man /usr/bin/time
 https://stackoverflow.com/questions/13274786/how-to-share-memory-between-process-fork
 https://askubuntu.com/questions/385528/how-to-increment-a-variable-in-bash
 https://stackoverflow.com/questions/6958689/running-multiple-commands-with-xargs/6958957#6958957
+https://stackoverflow.com/questions/4235519/counting-number-of-occurrences-of-a-char-in-a-string-in-c
 
 man cut
 
-For this assignment, I tried to play code golf.
-The structure is a string
+
+People who I talked with when working on this problem: Nour Elmanaki

@@ -1,0 +1,6 @@
+sleep 10
+ls -alh
+cpwd
+ccd /home
+ls -alh
+cpwd

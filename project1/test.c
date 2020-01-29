@@ -1,4 +1,4 @@
-#include "zrunner.c"
+#include "test_helper.c"
 
 void main(){
     printf("Started\n");
