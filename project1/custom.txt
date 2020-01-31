@@ -4,3 +4,4 @@ cpwd
 ccd /home
 ls -alh
 cpwd
+sleep 5

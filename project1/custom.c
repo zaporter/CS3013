@@ -31,7 +31,7 @@ void run(char* cmd){
         }else{
             while(waitpid(child,&status,0)==-1){}
             gettimeofday(&end,NULL);
-            getrusage(child,&usagestats);
+            getrusage(RUSAGE_CHILDREN,&usagestats);
             printf("\n-- Statistics ---\nElapsed time: %d milliseconds\nPage Faults: %ld\nPage Faults (reclaimed): %ld\n-- End of Statistics --\n\n",(int)(1000*(end.tv_sec - beginning.tv_sec)+(end.tv_usec-beginning.tv_usec)/1000),usagestats.ru_majflt, usagestats.ru_minflt);
             kill(getpid(),SIGINT);           
         }

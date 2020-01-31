@@ -8,4 +8,6 @@ cproclist
 ccd /home
 ls -alh
 cpwd
-cat /usr/bin/Xephyr
+
+
+touch hi.txt

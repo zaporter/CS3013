@@ -30,8 +30,8 @@ void run(char* cmd, int shouldWait,int localProc){
         for (i=0; cmd[i]; cmd[i]==' ' ? i++: *cmd++){}
         if (strlen(cmdTmp)>128 || i>32) printf("Max cmd length is 128 with 32 args!\n");
         for(i=0; (args[i]=strtok(i==0?cmdTmp:NULL," "))!=NULL; i++){}
+        if (!shouldWait) (*bgProcesses) |= (1 << localProc);
         if ((child=fork())==0){
-            if (!shouldWait) (*bgProcesses) |= (1 << localProc);
             gettimeofday(&beginning,NULL);
             if ((child=fork())==0){
                 execvp(args[0],args);
@@ -39,9 +39,9 @@ void run(char* cmd, int shouldWait,int localProc){
             }else{
                 while(waitpid(child,&status,0)==-1){}
                 gettimeofday(&end,NULL);
+                getrusage(RUSAGE_CHILDREN,&usagestats);
                 if (!shouldWait) (*bgProcesses) &= ~(1 << localProc);
                 if (!shouldWait) printf("\n-- Job Complete [%d: %s] --\nProcess ID: %d\n",localProc,bgNames[localProc],child);
-                getrusage(child,&usagestats);
                 printf("\n-- Statistics ---\nElapsed time: %d milliseconds\nPage Faults: %ld\nPage Faults (reclaimed): %ld\n-- End of Statistics --\n",(int)(1000*(end.tv_sec - beginning.tv_sec)+(end.tv_usec-beginning.tv_usec)/1000),usagestats.ru_majflt, usagestats.ru_minflt);
                 kill(getpid(),SIGINT);           
             }
@@ -58,11 +58,11 @@ int main(int argc, char **argv){
     while (getline(&line,&line_len,fp)!=-1){
         line[strlen(line)-1]='\0';
         if (pos+1<argc && i==atoi(argv[pos+1])){
-            strcpy(bgNames[pos],line);
-            run(line, 0, pos);
+            strncpy(bgNames[pos % 32],line,127);
+            run(line, 0, pos % 32);
             pos++;
         }else
-            run(line, 1, pos);
+            run(line, 1, 0);
         i++;
     }
     while (*bgProcesses){}
