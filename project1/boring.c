@@ -16,7 +16,7 @@ void run(char* cmd){
         gettimeofday(&beginning,NULL);
         if ((child=fork())==0){
             execvp(args[0],args);
-            printf("Exec failed\n");
+            printf("Exec failed -- Command: %s\n",cmd);
         }else{
             while(waitpid(child,&status,0)==-1){}
             gettimeofday(&end,NULL);
