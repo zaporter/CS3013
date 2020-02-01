@@ -1,3 +1,4 @@
+echo "started"
 ccd /
 ls -alh
 cpwd

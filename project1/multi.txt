@@ -9,5 +9,4 @@ ccd /home
 ls -alh
 cpwd
 
-
 touch hi.txt

@@ -1,0 +1,78 @@
+Running command: echo "started"
+"started"
+
+-- Statistics ---
+Elapsed time: 2 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 63
+-- End of Statistics --
+
+Running command: ccd /
+Changed to directory: /   [Only output from ccd]
+
+Running command: ls -alh
+total 104K
+drwxr-xr-x  23 root root 4.0K Jan 31 20:31 .
+drwxr-xr-x  23 root root 4.0K Jan 31 20:31 ..
+drwxr-xr-x   2 root root 4.0K Jan 20 13:51 bin
+drwxr-xr-x   3 root root 4.0K Jan 31 20:31 boot
+drwxrwxr-x   2 root root 4.0K Jan 20 13:35 cdrom
+drwxr-xr-x  18 root root 4.2K Jan 31 20:30 dev
+drwxr-xr-x 131 root root  12K Jan 30 20:28 etc
+drwxr-xr-x   3 root root 4.0K Jan 20 13:35 home
+lrwxrwxrwx   1 root root   33 Jan 30 20:30 initrd.img -> boot/initrd.img-4.4.0-173-generic
+lrwxrwxrwx   1 root root   31 Jan 31 20:31 initrd.img.old -> boot/initrd.img-4.4.203zaporter
+drwxr-xr-x  22 root root 4.0K Jan 20 13:49 lib
+drwx------   2 root root  16K Jan 20 13:34 lost+found
+drwxr-xr-x   2 root root 4.0K Jul 19  2016 media
+drwxr-xr-x   2 root root 4.0K Jul 19  2016 mnt
+drwxr-xr-x   2 root root 4.0K Jul 19  2016 opt
+dr-xr-xr-x 229 root root    0 Jan 31 20:30 proc
+drwx------   3 root root 4.0K Jul 19  2016 root
+drwxr-xr-x  25 root root  860 Jan 31 20:35 run
+drwxr-xr-x   2 root root  12K Jan 30 20:28 sbin
+drwxr-xr-x   2 root root 4.0K Jan 20 14:00 snap
+drwxr-xr-x   2 root root 4.0K Jul 19  2016 srv
+dr-xr-xr-x  13 root root    0 Jan 31 20:43 sys
+drwxrwxrwt  13 root root 4.0K Jan 31 20:44 tmp
+drwxr-xr-x  12 root root 4.0K Jan 20 13:58 usr
+drwxr-xr-x  14 root root 4.0K Jul 19  2016 var
+lrwxrwxrwx   1 root root   30 Jan 30 20:30 vmlinuz -> boot/vmlinuz-4.4.0-173-generic
+lrwxrwxrwx   1 root root   28 Jan 31 20:31 vmlinuz.old -> boot/vmlinuz-4.4.203zaporter
+
+-- Statistics ---
+Elapsed time: 10 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 126
+-- End of Statistics --
+
+Running command: cpwd
+Current directory: /    [Only output from cpwd]
+
+Running command: ccd /home
+Changed to directory: /home   [Only output from ccd]
+
+Running command: ls -alh
+total 12K
+drwxr-xr-x  3 root root 4.0K Jan 20 13:35 .
+drwxr-xr-x 23 root root 4.0K Jan 31 20:31 ..
+drwxr-xr-x 19 zack zack 4.0K Jan 31 20:44 zack
+
+-- Statistics ---
+Elapsed time: 6 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 131
+-- End of Statistics --
+
+Running command: cpwd
+Current directory: /home    [Only output from cpwd]
+
+Running command: sleep 5
+
+-- Statistics ---
+Elapsed time: 5004 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 64
+-- End of Statistics --
+
+

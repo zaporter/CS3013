@@ -1,0 +1,100 @@
+Running command: sleep 5
+Background: ID [0]: sleep 5
+
+Running command: ls -alh
+total 76K
+drwxrwxr-x 2 zack zack 4.0K Jan 31 20:45 .
+drwxrwxr-x 4 zack zack 4.0K Jan 30 20:34 ..
+-rwxrwxr-x 1 zack zack 7.6K Jan 31 20:42 boring
+-rw-rw-r-- 1 zack zack 1.8K Jan 31 20:42 boring.c
+-rw-rw-r-- 1 zack zack 1.8K Jan 31 20:44 boringOutput.txt
+-rwxrwxr-x 1 zack zack 7.9K Jan 31 20:42 custom
+-rw-rw-r-- 1 zack zack 2.3K Jan 31 20:39 custom.c
+-rw-rw-r-- 1 zack zack 2.5K Jan 31 20:45 customOutput.txt
+-rw-rw-r-- 1 zack zack   65 Jan 31 20:40 custom.txt
+-rw-rw-r-- 1 zack zack  197 Jan 30 20:55 Makefile
+-rwxrwxr-x 1 zack zack  13K Jan 31 20:42 multi
+-rw-rw-r-- 1 zack zack 3.9K Jan 31 20:39 multi.c
+-rw-rw-r-- 1 zack zack   95 Jan 31 20:41 multi.txt
+-rw-rw-r-- 1 zack zack 2.0K Jan 31 20:39 README.txt
+
+-- Statistics ---
+Elapsed time: 8 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 129
+-- End of Statistics --
+
+Running command: sleep 10
+Background: ID [1]: sleep 10
+
+Running command: cpwd
+Current directory: /home/zack/CS3013/project1    [Only output from cpwd]
+
+Running command: cproclist
+[0] sleep 5
+[1] sleep 10
+
+Running command: sleep 6
+
+-- Job Complete [0: sleep 5] --
+Process ID: 11875
+
+-- Statistics ---
+Elapsed time: 5003 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 65
+-- End of Statistics --
+
+-- Statistics ---
+Elapsed time: 6003 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 64
+-- End of Statistics --
+
+Running command: cproclist
+[1] sleep 10
+
+Running command: ccd /home
+Changed to directory: /home   [Only output from ccd]
+
+Running command: ls -alh
+total 12K
+drwxr-xr-x  3 root root 4.0K Jan 20 13:35 .
+drwxr-xr-x 23 root root 4.0K Jan 31 20:31 ..
+drwxr-xr-x 19 zack zack 4.0K Jan 31 20:45 zack
+
+-- Statistics ---
+Elapsed time: 5 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 131
+-- End of Statistics --
+
+Running command: cpwd
+Current directory: /home    [Only output from cpwd]
+
+Running command: 
+
+-- Statistics ---
+Elapsed time: 90 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 14
+-- End of Statistics --
+
+Running command: touch hi.txt
+touch: cannot touch 'hi.txt': Permission denied
+
+-- Statistics ---
+Elapsed time: 0 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 70
+-- End of Statistics --
+
+-- Job Complete [1: sleep 10] --
+Process ID: 11878
+
+-- Statistics ---
+Elapsed time: 10020 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 64
+-- End of Statistics --
+

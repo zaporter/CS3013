@@ -20,10 +20,12 @@ custom.txt
     list of commands to be run by custom commander
 multi.txt
     list of commands to be run by multi commander
-customTestOutput.txt
+boringOutput.txt
+    Output from a test of boring
+customOutput.txt
     Output from a test of custom
-muliTestOutput.txt
-    Output from a test of multi
+muliOutput.txt
+    Output from a test of multi (./multi 1 3)
 
 
 -------

@@ -1,0 +1,51 @@
+unning command: whoami
+zack
+
+-- Statistics ---
+Elapsed time: 4 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 87
+-- End of Statistics --
+
+Running command: last
+zack     tty7         :0               Fri Jan 31 20:31    gone - no logout
+reboot   system boot  4.4.203zaporter  Fri Jan 31 20:30   still running
+zack     tty7         :0               Thu Jan 30 20:30 - crash (1+00:00)
+reboot   system boot  4.4.203zaporter  Thu Jan 30 20:30   still running
+zack     tty7         :0               Thu Jan 30 20:27 - down   (00:02)
+reboot   system boot  4.4.203zaporter  Thu Jan 30 20:27 - 20:30  (00:02)
+zack     tty7         :0               Mon Jan 20 22:18 - crash (9+22:08)
+reboot   system boot  4.4.203zaporter  Mon Jan 20 22:18 - 20:30 (9+22:11)
+zack     tty7         :0               Mon Jan 20 13:45 - crash  (08:33)
+reboot   system boot  4.4.0-31-generic Mon Jan 20 13:45 - 20:30 (10+06:44)
+
+wtmp begins Mon Jan 20 13:45:37 2020
+
+-- Statistics ---
+Elapsed time: 7 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 112
+-- End of Statistics --
+
+Running command: ls -al
+total 68
+drwxrwxr-x 2 zack zack  4096 Jan 31 20:44 .
+drwxrwxr-x 4 zack zack  4096 Jan 30 20:34 ..
+-rwxrwxr-x 1 zack zack  7768 Jan 31 20:42 boring
+-rw-rw-r-- 1 zack zack  1746 Jan 31 20:42 boring.c
+-rwxrwxr-x 1 zack zack  8032 Jan 31 20:42 custom
+-rw-rw-r-- 1 zack zack  2342 Jan 31 20:39 custom.c
+-rw-rw-r-- 1 zack zack    65 Jan 31 20:40 custom.txt
+-rw-rw-r-- 1 zack zack   197 Jan 30 20:55 Makefile
+-rwxrwxr-x 1 zack zack 12396 Jan 31 20:42 multi
+-rw-rw-r-- 1 zack zack  3893 Jan 31 20:39 multi.c
+-rw-rw-r-- 1 zack zack    95 Jan 31 20:41 multi.txt
+-rw-rw-r-- 1 zack zack  1965 Jan 31 20:39 README.txt
+
+-- Statistics ---
+Elapsed time: 3 milliseconds
+Page Faults: 0
+Page Faults (reclaimed): 127
+-- End of Statistics --
+
+
