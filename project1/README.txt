@@ -11,8 +11,8 @@ To run boring:
 To run custom:
     ./custom
 To run multi:
-    ./multi [list of processes to be run in the background (Must be ascending order)]
-    Ex:  ./multi 1 3 5
+    ./multi [list of processes to be run in the background (duplicates do not indicate to run it twice)]
+    Ex:  ./multi 1 5 3
 
 -------
 Important files:
@@ -32,6 +32,8 @@ Background processes are given an ID between 0 and 31
 Process names are stored in a 2d array of length 32 x 128 (max length is 128 charcters for a command). 
 An int is then shared between all processes. If that processes bit is set then it is still running. After it finishes, it clears its bit. 
 The index loops back around to zero after reaching 32 background processes
+
+[Unsupported for more than 999998 background processes]
 
 -------
 People who I talked with when working on this problem: Nour Elmanaki
