@@ -9,7 +9,7 @@
 #define SET_BIT(S, B) S |= (1 << B)
 
 u_int8_t memory[64];
-u_int8_t pidPageTables[4];
+int8_t pidPageTables[4];
 int32_t claimedPages[4];
 
 char input[4][32];
@@ -43,29 +43,39 @@ void getInput(){
 }
 int map(int pid, int addr, int value){
     int emptyPageLoc = getNextPage() *16;
-    if (emptyPageLoc<0){
-        printf("Not enough empty pages%d\n",emptyPageLoc);   
-        return 0;
+    if (pidPageTables[pid]==-1){
+        if (emptyPageLoc<0){
+            printf("Not enough empty pages %d\n",emptyPageLoc);   
+            return 0;
+        }
+        claimPage(emptyPageLoc/16);
+        pidPageTables[pid]=emptyPageLoc;
     }
-    claimPage(emptyPageLoc/16);
-    pidPageTables[pid]=emptyPageLoc;
     for (int x=0; x<4; x++){
         memory[emptyPageLoc+x]=0;
+    }
+    int VPN = addr >> 6; // pop off the top 2
+    if (!memory[pidPageTables[pid] + VPN]){
+        memory[pidPageTables[pid]+VPN] = emptyPageLoc/16;
+        //valid
+        SET_BIT(memory[pidPageTables[pid+VPN]],0);
+        if (value){// writable
+            SET_BIT(memory[pidPageTables[pid+VPN]],0);
+        }
     }
     return 1;
 }
 int store(int pid, int addr, int value){
     int VPN = addr >> 6; // pop off the top 2
-    if (!memory[pidPageTables[pid] + VPN]){
-        int emptyPageLoc = getNextPage() *16;
-        if (emptyPageLoc<1){
-            printf("Not enough empty pages\n");   
-            return 0;
-        }
-        claimPage(emptyPageLoc/16);
-        memory[pidPageTables[pid]+VPN] = emptyPageLoc/16;
-        SET_BIT(memory[pidPageTables[pid+VPN]],0);
-        
+    // test valid
+    if (!(memory[pidPageTables[pid]+VPN] & 0x80)){
+        printf("Invalid address in page! Have you mapped this page yet?\n");
+        return 0;
+    }
+    // test valid
+    if (!(memory[pidPageTables[pid]+VPN] & 0x60)){
+        printf("Page not writable\n");
+        return 0;
     }
     int startOfPage=(memory[pidPageTables[pid]+VPN] & 0x03)*16;
     int offset = addr & 0x3F;
@@ -79,6 +89,9 @@ int read(int pid, int addr, int value){
     return memory[startOfPage+offset];
 }
 int main(){
+    for (int x=0; x<4; x++){
+        pidPageTables[x]=-1;
+    }
     char * pEnd;
     printf("Starting\n");
     while (1){
