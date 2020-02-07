@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define PROCESS_ID 0
 #define INSTRUCTION_TYPE 1
 #define VIRTUAL_ADDRESS 2
@@ -9,15 +10,26 @@
 
 u_int8_t memory[64];
 u_int8_t pidPageTables[4];
+int32_t claimedPages[4];
 
 char input[4][32];
 
-
+int getNextPage(){
+    for (int i=0; i<4; i++){
+        if (!claimedPages[i]){
+            return i*16;
+        }
+    }
+    return -1;
+}
+void claimPage(int loc){
+    claimedPages[loc]=1;
+}
 void getInput(){
     int inNum=0;
     int loc=0;
     char current[1024];
-    char tmp='0';
+    char tmp;
     do{
         tmp=getchar();
         if (tmp==',' || tmp == '\n'){
@@ -30,8 +42,12 @@ void getInput(){
     }while(tmp!='\n');
 }
 int map(int pid, int addr, int value){
-    // FIND EMPTY PAGE TABLE
-    int emptyPageLoc=0; // 16 // 32 // etc
+    int emptyPageLoc = getNextPage() *16;
+    if (emptyPageLoc<0){
+        printf("Not enough empty pages%d\n",emptyPageLoc);   
+        return 0;
+    }
+    claimPage(emptyPageLoc/16);
     pidPageTables[pid]=emptyPageLoc;
     for (int x=0; x<4; x++){
         memory[emptyPageLoc+x]=0;
@@ -41,9 +57,12 @@ int map(int pid, int addr, int value){
 int store(int pid, int addr, int value){
     int VPN = addr >> 6; // pop off the top 2
     if (!memory[pidPageTables[pid] + VPN]){
-        // no entry in table
-        // FIND EMPTY PAGE TABLE
-        int emptyPageLoc=16;
+        int emptyPageLoc = getNextPage() *16;
+        if (emptyPageLoc<1){
+            printf("Not enough empty pages\n");   
+            return 0;
+        }
+        claimPage(emptyPageLoc/16);
         memory[pidPageTables[pid]+VPN] = emptyPageLoc/16;
         SET_BIT(memory[pidPageTables[pid+VPN]],0);
         
@@ -65,15 +84,15 @@ int main(){
     while (1){
         printf("Input: ");
         getInput();
-        if (strlen(input[1])>=3 && strncmp(input[1],"map")==0){
+        if (strlen(input[1])>=3 && strncmp(input[1],"map",3)==0){
             map(atoi(input[0]), atoi(input[2]), atoi(input[3]));
             printf("Mapped\n");
         }
-        else if (strlen(input[1])>=5 && strncmp(input[1],"store")==0){
+        else if (strlen(input[1])>=5 && strncmp(input[1],"store",5)==0){
             store(atoi(input[0]), atoi(input[2]), atoi(input[3]));
             printf("Stored\n");
         }
-        else if (strlen(input[1])>=4 && strncmp(input[1],"read")==0){
+        else if (strlen(input[1])>=4 && strncmp(input[1],"read",4)==0){
             printf("Read: %d\n",read(atoi(input[0]), atoi(input[2]), atoi(input[3])));
 
         }else{
