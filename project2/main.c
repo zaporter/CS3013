@@ -17,7 +17,7 @@ char input[4][32];
 int getNextPage(){
     for (int i=0; i<4; i++){
         if (!claimedPages[i]){
-            return i*16;
+            return i;
         }
     }
     return -1;
@@ -42,37 +42,46 @@ void getInput(){
     }while(tmp!='\n');
 }
 int map(int pid, int addr, int value){
-    int emptyPageLoc = getNextPage() *16;
+    int emptyPageLoc = getNextPage()*16;
     if (pidPageTables[pid]==-1){
         if (emptyPageLoc<0){
-            printf("Not enough empty pages %d\n",emptyPageLoc);   
+            printf("Not enough empty pages \n");   
             return 0;
         }
         claimPage(emptyPageLoc/16);
         pidPageTables[pid]=emptyPageLoc;
+        printf("Claiming physical page %d for map\n",emptyPageLoc);
     }
     for (int x=0; x<4; x++){
         memory[emptyPageLoc+x]=0;
     }
     int VPN = addr >> 6; // pop off the top 2
     if (!memory[pidPageTables[pid] + VPN]){
+        emptyPageLoc=getNextPage()*16;
+        claimPage(emptyPageLoc/16);
+        printf("Claiming page at physical address %d\n",emptyPageLoc);
         memory[pidPageTables[pid]+VPN] = emptyPageLoc/16;
+        printf("memVal: %d\n",memory[pidPageTables[pid]]);
         //valid
-        SET_BIT(memory[pidPageTables[pid+VPN]],0);
-        if (value){// writable
-            SET_BIT(memory[pidPageTables[pid+VPN]],0);
+        SET_BIT(memory[pidPageTables[pid]+VPN],7);
+        // present in memory
+        SET_BIT(memory[pidPageTables[pid]+VPN],5);
+        if (value){// writeable
+            SET_BIT(memory[pidPageTables[pid]+VPN],6);
         }
+        printf("memVal: %d\n",memory[pidPageTables[pid]]);
     }
     return 1;
 }
 int store(int pid, int addr, int value){
     int VPN = addr >> 6; // pop off the top 2
     // test valid
+    printf("Checking memory loc %d\n",pidPageTables[pid]+VPN);
     if (!(memory[pidPageTables[pid]+VPN] & 0x80)){
         printf("Invalid address in page! Have you mapped this page yet?\n");
         return 0;
     }
-    // test valid
+    // test writeable
     if (!(memory[pidPageTables[pid]+VPN] & 0x60)){
         printf("Page not writable\n");
         return 0;
@@ -88,6 +97,9 @@ int read(int pid, int addr, int value){
     int offset = addr & 0x3F;
     return memory[startOfPage+offset];
 }
+int swap(int dontSwapPFN){
+    
+}
 int main(){
     for (int x=0; x<4; x++){
         pidPageTables[x]=-1;
@@ -98,12 +110,12 @@ int main(){
         printf("Input: ");
         getInput();
         if (strlen(input[1])>=3 && strncmp(input[1],"map",3)==0){
-            map(atoi(input[0]), atoi(input[2]), atoi(input[3]));
-            printf("Mapped\n");
+            if (map(atoi(input[0]), atoi(input[2]), atoi(input[3])))
+                printf("Mapped\n");
         }
         else if (strlen(input[1])>=5 && strncmp(input[1],"store",5)==0){
-            store(atoi(input[0]), atoi(input[2]), atoi(input[3]));
-            printf("Stored\n");
+            if (store(atoi(input[0]), atoi(input[2]), atoi(input[3])))
+                printf("Stored\n");
         }
         else if (strlen(input[1])>=4 && strncmp(input[1],"read",4)==0){
             printf("Read: %d\n",read(atoi(input[0]), atoi(input[2]), atoi(input[3])));
