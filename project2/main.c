@@ -25,6 +25,9 @@ int getNextPage(){
 void claimPage(int loc){
     claimedPages[loc]=1;
 }
+int numFreePages(){
+
+}
 void getInput(){
     int inNum=0;
     int loc=0;
@@ -42,6 +45,7 @@ void getInput(){
     }while(tmp!='\n');
 }
 int map(int pid, int addr, int value){
+    swapin(pid,addr>>6);
     int emptyPageLoc = getNextPage()*16;
     if (pidPageTables[pid]==-1){
         if (emptyPageLoc<0){
@@ -74,6 +78,7 @@ int map(int pid, int addr, int value){
     return 1;
 }
 int store(int pid, int addr, int value){
+    swapin(pid,addr>>6);
     int VPN = addr >> 6; // pop off the top 2
     // test valid
     printf("Checking memory loc %d\n",pidPageTables[pid]+VPN);
@@ -92,12 +97,32 @@ int store(int pid, int addr, int value){
     return 1;
 }
 int read(int pid, int addr, int value){
+    swapin(pid, addr>>6);
     int VPN = addr >> 6;
     int startOfPage=(memory[pidPageTables[pid]+VPN] & 0x03)*16;
     int offset = addr & 0x3F;
     return memory[startOfPage+offset];
 }
-int swap(int dontSwapPFN){
+void swapin(int pageTable, int VPN){
+    printf("Swapping in %d & %d\n",pageTable,VPN);
+    if (freePages()<2){
+        flush();
+    }   
+     
+ 
+    
+}
+void flush(){
+    printf("Flushing\n");
+    for (int i=0; i<4; i++){
+        if (pidPageTables[i]!=-1)
+            swapout(i);
+    }
+    for (int x=0; x<64; x++){
+        memory[x]=0;
+    }
+}
+int swapout(int pageTable){
     
 }
 int main(){
