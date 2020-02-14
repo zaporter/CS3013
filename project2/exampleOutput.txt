@@ -1,0 +1,238 @@
+Creating swap file
+Starting
+
+Input: Swapping in 0 & 1
+Claiming physical page 0 for map
+Swapped in
+Mapping page 0 for process 0
+Made writeable
+Mapped
+
+Input: No table evict
+Swapping in 0 & 2
+Claiming physical page 0 for map
+Swapped in
+Mapping page 1 for process 0
+Made writeable
+Mapped
+
+Input: No table evict
+Swapping in 0 & 3
+Claiming physical page 0 for map
+Swapped in
+Mapping page 2 for process 0
+Made writeable
+Mapped
+
+Input: Swapping out pid: 0
+Clean swapping 1 to 1
+Clean swapping 2 to 2
+Clean swapping 3 to 3
+Clean swapping 0 to 0
+Swapping in 0 & 4
+Claiming physical page 0 for map
+Swapped in
+Mapping page 3 for process 0
+Made writeable
+Mapped
+
+Input: No table evict
+Swapping in 0 & 1
+Claiming physical page 0 for map
+Swapped in
+Checking memory loc 0
+Storing 100 at virtual address 10 (physical address 42)
+Stored
+
+Input: Page in memory. No swapping 
+Read: 100
+
+Input: Process must be a value between 0 and 3 inclusive.
+
+Input: Invalid command
+
+Input: Storage loc must be a value between 0 and 63 inclusive
+
+Input: Value must be a value between 0 and 255 inclusive
+
+Input: Page in memory. No swapping 
+Mapping page 0 for process 0
+Made not writeable
+Mapped
+
+Input: Page in memory. No swapping 
+Checking memory loc 0
+Page not writable
+
+Input: Page in memory. No swapping 
+Read: 100
+
+Input: Swapping in 5 & 6
+Free pages: 1. Flushing
+Flushing
+Swapping out pid: 0
+Clean swapping 2 to 1
+Clean swapping 1 to 4
+Clean swapping 0 to 0
+Claiming physical page 0 for map
+Swapped in
+Mapping page 0 for process 1
+Made writeable
+Mapped
+
+Input: Swapping in 10 & 11
+Claiming physical page 2 for map
+Swapped in
+Mapping page 0 for process 2
+Made not writeable
+Mapped
+
+Input: Swapping in 15 & 16
+Free pages: 0. Flushing
+Flushing
+Swapping out pid: 1
+Clean swapping 1 to 6
+Clean swapping 0 to 5
+Swapping out pid: 2
+Clean swapping 3 to 11
+Clean swapping 2 to 10
+Claiming physical page 0 for map
+Swapped in
+Mapping page 0 for process 3
+Made writeable
+Mapped
+
+Input: Swapping in 10 & 11
+Claiming physical page 2 for map
+Swapped in
+Checking memory loc 32
+Page not writable
+
+Input: Swapping in 5 & 6
+Free pages: 0. Flushing
+Flushing
+Swapping out pid: 2
+Clean swapping 3 to 11
+Clean swapping 2 to 10
+Swapping out pid: 3
+Clean swapping 1 to 16
+Clean swapping 0 to 15
+Claiming physical page 0 for map
+Swapped in
+Checking memory loc 0
+Storing 1 at virtual address 10 (physical address 26)
+Stored
+
+Input: Swapping in 15 & 16
+Claiming physical page 2 for map
+Swapped in
+Checking memory loc 32
+Storing 3 at virtual address 11 (physical address 59)
+Stored
+
+Input: Swapping out pid: 3
+Clean swapping 3 to 16
+Clean swapping 2 to 15
+Swapping in 15 & 19
+Claiming physical page 2 for map
+Swapped in
+Mapping page 3 for process 3
+Made not writeable
+Mapped
+
+Input: Swapping out pid: 3
+Clean swapping 3 to 19
+Clean swapping 2 to 15
+Swapping in 15 & 16
+Claiming physical page 2 for map
+Swapped in
+Checking memory loc 32
+Storing 50 at virtual address 0 (physical address 48)
+Stored
+
+Input: Swapping out pid: 3
+Clean swapping 3 to 16
+Clean swapping 2 to 15
+Swapping in 15 & 19
+Claiming physical page 2 for map
+Swapped in
+Checking memory loc 35
+Page not writable
+
+Input: Page in memory. No swapping 
+Mapping page 3 for process 3
+Made writeable
+Mapped
+
+Input: Page in memory. No swapping 
+Checking memory loc 35
+Storing 11 at virtual address 60 (physical address 60)
+Stored
+
+Input: Swapping in 10 & 11
+Free pages: 0. Flushing
+Flushing
+Swapping out pid: 1
+Clean swapping 1 to 6
+Clean swapping 0 to 5
+Swapping out pid: 3
+Clean swapping 3 to 19
+Clean swapping 2 to 15
+Claiming physical page 0 for map
+Swapped in
+Checking memory loc 0
+Page not writable
+
+Input: No table evict
+Swapping in 10 & 14
+Claiming physical page 0 for map
+Swapped in
+Checking memory loc 3
+Invalid address in page! Have you mapped this page yet?
+
+Input: Swapping in 0 & 1
+Free pages: 1. Flushing
+Flushing
+Swapping out pid: 2
+Clean swapping 1 to 11
+Clean swapping 2 to 14
+Clean swapping 0 to 10
+Claiming physical page 0 for map
+Swapped in
+Read: 100
+
+Input: Swapping in 10 & 11
+Claiming physical page 2 for map
+Swapped in
+Read: 0
+
+Input: Swapping in 15 & 16
+Free pages: 0. Flushing
+Flushing
+Swapping out pid: 0
+Clean swapping 1 to 1
+Clean swapping 0 to 0
+Swapping out pid: 2
+Clean swapping 3 to 11
+Clean swapping 2 to 10
+Claiming physical page 0 for map
+Swapped in
+Read: 50
+
+Input: No table evict
+Swapping in 15 & 19
+Claiming physical page 0 for map
+Swapped in
+Read: 11
+
+Input: Swapping in 5 & 6
+Free pages: 1. Flushing
+Flushing
+Swapping out pid: 3
+Clean swapping 1 to 16
+Clean swapping 2 to 19
+Clean swapping 0 to 15
+Claiming physical page 0 for map
+Swapped in
+Read: 1
+
